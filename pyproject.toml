@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlb-player-projections"
+version = "0.1.0"
+description = "Bayesian (PyMC) MLB player rate projections with Marcel-style baselines and backtests"
+requires-python = ">=3.10"
+dependencies = ["pymc>=5.10", "arviz", "pandas", "pyarrow", "numpy", "scipy", "matplotlib", "pylahman>=0.7"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools]
+packages = ["projections"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+markers = ["slow: fits a small PyMC model (about a minute)"]
