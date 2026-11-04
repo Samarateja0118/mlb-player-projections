@@ -1,5 +1,7 @@
 # MLB Player Projections
 
+[![tests](https://github.com/Samarateja0118/mlb-player-projections/actions/workflows/ci.yml/badge.svg)](https://github.com/Samarateja0118/mlb-player-projections/actions/workflows/ci.yml)
+
 Hierarchical Bayesian projections of MLB player rates, written in **PyMC** and ported to **Stan**, backtested against a Marcel-style baseline and league average, with an independent **R** replication of the baselines and scoring.
 
 Projected rates, each per plate appearance (hitters) or batter faced (pitchers):
@@ -12,6 +14,12 @@ Projected rates, each per plate appearance (hitters) or batter faced (pitchers):
 | `pit_k` | pitcher strikeout rate |
 
 Data: the Lahman Baseball Database through the 2025 season, via the [`pylahman`](https://pypi.org/project/pylahman/) package (SABR, CC BY-SA 3.0). Season lines are summed across stints (trades), and age is the player's age on July 1.
+
+**At a glance** (2023-2025 backtest, 1,144 hitter-seasons and 1,220 pitcher-seasons; details in [Results](#results)):
+
+- Beats league average on every stat and season. Beats Marcel on hitter strikeout rate (bootstrap 95% CI excludes zero), ties it on walk rate, and is slightly worse on home run rate and pitcher strikeout rate. The README explains why.
+- 80% predictive intervals cover 75-85% of outcomes.
+- The Stan port matches PyMC (projection correlation 0.9999), and a base-R replication matches the Python Marcel baseline exactly on all 12 splits.
 
 ## Model
 
